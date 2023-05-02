@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import ActiveLink from "../ActiveLink/ActiveLink";
 import { Link } from "react-router-dom";
 import './Header.css'
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Header = () => {
+  const {user, LogOut}= useContext(AuthContext)
+  const handleLogOut =()=>{
+      LogOut()
+      .then(()=>{
+        
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+  }
   return (
     <div className="nav bg-base-300  md:grid grid-cols-4 items-center">
          <Link>
@@ -25,13 +36,15 @@ const Header = () => {
             <ActiveLink to="/">Home</ActiveLink>
           </li>
           <li>
-            {" "}
+           
             <ActiveLink to="/blog">Blog</ActiveLink>
           </li>
          
           <li>
-            {" "}
-            <ActiveLink to="/login">Login</ActiveLink>
+           
+            {
+              user ? <span onClick={handleLogOut}><ActiveLink>Log out</ActiveLink></span>:<ActiveLink to="/login">Login</ActiveLink>
+            }
           </li>
           <li>
             <ActiveLink to="/register">register</ActiveLink>
