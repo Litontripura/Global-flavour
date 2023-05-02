@@ -15,6 +15,8 @@ import Blog from './components/blog/Blog';
 import ChefPage from './components/chefPage/ChefPage';
 import AuthProvider from './components/Provider/AuthProvider';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import RecipiesPage from './components/Recipies/RecipiesPage';
+import SingleRecipies from './components/Recipies/SingleRecipies';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<PrivateRoute><Home></Home></PrivateRoute>
+        element:<Home></Home>
       },
       {
         path:'login',
@@ -37,16 +39,31 @@ const router = createBrowserRouter([
         path:'blog',
         element:<Blog></Blog>
       },
+      {
+        path:'/chefs',
+        element:<ChefPage></ChefPage>,
+       
+      },
+      {
+        path:'chefs', 
+        element:<RecipiesPage></RecipiesPage>,
+        children:[
+          {
+            path:':id', 
+            element:<RecipiesPage></RecipiesPage>,
+          
+            
+          }
+        ]
+       
+      }
+   
     
     ]
   },
-  {
-    path:'/',
-    element:<ChefPage></ChefPage>,
-   
-  }
-
+ 
 ]);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
