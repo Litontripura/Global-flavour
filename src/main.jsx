@@ -13,6 +13,8 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Blog from './components/blog/Blog';
 import ChefPage from './components/chefPage/ChefPage';
+import AuthProvider from './components/Provider/AuthProvider';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<Home></Home>
+        element:<PrivateRoute><Home></Home></PrivateRoute>
       },
       {
         path:'login',
@@ -48,6 +50,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <AuthProvider>
+    <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

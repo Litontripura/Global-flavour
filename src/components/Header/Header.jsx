@@ -1,37 +1,40 @@
 import React from "react";
+import ActiveLink from "../ActiveLink/ActiveLink";
 import { Link } from "react-router-dom";
+import './Header.css'
+
 
 const Header = () => {
   return (
-    <div className="nav bg-base-300 py-5 md:grid grid-cols-4 items-center  ">
-         <div className="col-span-1">
+    <div className="nav bg-base-300  md:grid grid-cols-4 items-center">
+         <Link>
           <span className="text-orange-500 text-5xl font-extrabold">G</span>
           <span className="text-blue-500 text-5xl font-extrabold ">F</span>
-         </div>
+         </Link>
        <div className="col-span-2 mx-auto">
-       <Link className="flex items-center ">
+       <div className="logo flex items-center shadow-xl">
               <span className="text-4xl font-bold text-orange-500">G</span>
-              <p className="font-bold text-xl text-blue-700">lobal</p>{" "}
+              <span className="font-bold text-xl text-blue-700">lobal</span>{" "}
               <span className="text-4xl font-bold text-orange-500 ms-1">F</span>
-              <p className="font-bold text-xl text-blue-700">lavour</p>
-            </Link>
+              <span className="font-bold text-xl text-blue-700">lavour</span>
+      </div>
        </div>
       <div className="col-span-1">
-        <ul className="md:flex items-center gap-5">
+        <ul className="md:flex items-center gap-5 font-bold">
           <li>
-            <Link to="/">Home</Link>
+            <ActiveLink to="/">Home</ActiveLink>
           </li>
           <li>
             {" "}
-            <Link to="/blog">Blog</Link>
+            <ActiveLink to="/blog">Blog</ActiveLink>
           </li>
          
           <li>
             {" "}
-            <Link to="/login">Login</Link>
+            <ActiveLink to="/login">Login</ActiveLink>
           </li>
           <li>
-            <Link to="/register">register</Link>
+            <ActiveLink to="/register">register</ActiveLink>
           </li>
         </ul>
       </div>
