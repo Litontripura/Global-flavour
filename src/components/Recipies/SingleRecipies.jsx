@@ -9,23 +9,23 @@ const SingleRecipies = (props) => {
       .then((res) => res.json())
       .then((data) => setAllRecipi(data));
   }, []);
-// Banner - chef picture, chef name, a short bio/description, likes, number of recipes, and years of experience.
+
   return (
     <div className="grid justify-center">
-      <div className="md:grid grid-cols-2 justify-center items-center p-12">
+      <div className="md:grid grid-cols-2 justify-center items-center p-12 text-left">
         <div>
           <img className="w-[500px] rounded-lg py-6" src={picture_url} alt="" />
         </div>
-        <div>
-          <h1 className="text-2xl font-bold text-orange-600">{name}</h1>
-          <p className="font-bold text-blue-600 text-lg">{bio}</p>
-          <p className="text-xl font-bold ">Likes : {likes}</p>
-          <p>Total Recipies : {num_recipes}</p>
+        <div className="">
+          <h1 className="text-4xl font-bold  py-5 ">{name}</h1>
+          <p className="font-bold  text-lg">{bio}</p>
+          <p className="text-xl font-bold pt-5">Likes : {likes}</p>
+          <p className="py-3 text-lg font-bold ">Total Recipies : {num_recipes}</p>
         </div>
       </div>
       <div>
         <h1 className="text-4xl font-bold text-blue-600">{name} Recipies</h1>
-        <div className="md:grid grid-cols-3 gap-6 pt-5">
+        <div className="md:grid grid-cols-2 gap-12 p-12 justify-center">
           {allRecipi?.map((resi) => (
             <RecipiesCard key={resi.id} resi={resi}></RecipiesCard>
           ))}
