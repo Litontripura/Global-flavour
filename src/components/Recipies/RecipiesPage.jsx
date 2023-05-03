@@ -4,12 +4,16 @@ import SingleRecipies from './SingleRecipies';
 
 const RecipiesPage = () => {
     const [chefsRecipi, setChefsRecipi]= useState([])
+
     const {id}= useParams()
+    const alldata = useLoaderData()
+    console.log(alldata);
+     
 
     useEffect(()=>{
       fetch(`http://localhost:5000/chefs/${id}`)
       .then(res=>res.json())
-      .then(data=>setChefsRecipi(data.recipes))
+      .then(data=>setChefsRecipi(data))
     },[])
 
    
@@ -18,14 +22,15 @@ const RecipiesPage = () => {
     return (
         <div >
             <h1>All recipies</h1>
-            <div className='grid grid-cols-3'>
+            <div className='grid grid-cols-2 '>
                         
-        {
-            chefsRecipi.map(resi=> <SingleRecipies
-            key={resi.id}
-            resi={resi}
-            ></SingleRecipies>)
-        }
+        
+             <SingleRecipies
+           key={chefsRecipi.id}
+           chefsRecipi={chefsRecipi}
+           
+            ></SingleRecipies>
+        
             </div>
     
         </div>

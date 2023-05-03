@@ -1,10 +1,11 @@
 import React from 'react';
+import'./Banner.css'
 
 const Banner = () => {
     return (
-        <div className='flex justify-center md:h-70'>
-            <img className='rounded h-1/4 w-full' src={`https://images.unsplash.com/photo-1598515213345-d710d121c709?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`} alt="" />
-        </div>
+        <div className='banner mt-4'>
+        <h1 className='banner-text'><span className='text-orange-500 font-bold'>Welcome to</span> <span className='text-blue-700 font-bold'>G</span><span className='text-white font-bold'>lobal</span><span className='font-bold text-orange-500'>F</span><span className='text-white'>lavour</span></h1>
+      </div>
     );
 };
 
