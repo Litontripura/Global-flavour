@@ -16,14 +16,17 @@ const ChefPage = () => {
     
    
     return (
-        <div className='grid grid-cols-2 gap-4'>
+        <div className='mt-10'>
+            <h1 className='font-bold text-2xl text-orange-500'>Abailable <span className='text-blue-600'>Chefs</span></h1>
            
-            {
+           <div  className='grid md:grid-cols-2 gap-5 p-5'>
+           {
                 chefs.map(chef=><ChefsCard
                 key={chef.id}
                 chef={chef}
                 ></ChefsCard>)
             }
+           </div>
            
            
         </div>

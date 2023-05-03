@@ -20,20 +20,20 @@ const RecipiesPage = () => {
   
 
     return (
-        <div >
-            <h1>All recipies</h1>
-            <div className='grid grid-cols-2 '>
-                        
+        <>
+       
+       
+            <SingleRecipies
+              key={chefsRecipi.id}
+              chefsRecipi={chefsRecipi}
+              
+               ></SingleRecipies>
+         
+       
         
-             <SingleRecipies
-           key={chefsRecipi.id}
-           chefsRecipi={chefsRecipi}
-           
-            ></SingleRecipies>
-        
-            </div>
+            </>
     
-        </div>
+       
     );
 };
 
