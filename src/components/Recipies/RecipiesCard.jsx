@@ -4,7 +4,8 @@ import Rating from "react-rating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const RecipiesCard = ({ resi }) => {
+const RecipiesCard = (props) => {
+  const [isFavorited, setIsFavorited] = useState(false);
   const {
     id,
     name,
@@ -13,9 +14,9 @@ const RecipiesCard = ({ resi }) => {
     rating,
     is_favorite,
     photo_url,
-  } = resi;
+  } = props.resipi;
 
-  const [isFavorited, setIsFavorited] = useState(false);
+  
 
   const handleFavoriteClick = () => {
     setIsFavorited(true);

@@ -10,8 +10,10 @@ const ChefsCard = ({ chef }) => {
     num_recipes,
     likes,
     picture_url,
-    recipes,
+   
   } = chef;
+  console.log(chef);
+  
   return (
     <div className="grid md:grid-cols-3 gap-1">
       <div className="md:col-span-2">

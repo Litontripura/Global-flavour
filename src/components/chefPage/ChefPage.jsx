@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from 'react';
 
 import ChefsCard from './ChefsCard';
+// http://localhost:5000/chefs
+// https://assignment-10-server-litontripura.vercel.app/chefs
 
 const ChefPage = () => {
     const [chefs, setChefs]=useState([])
     useEffect(()=>{
-        fetch('https://assignment-10-server-litontripura.vercel.app/chefs')
+        fetch('http://localhost:5000/chefs')
         .then(res=>res.json())
         .then(data=>setChefs(data))
         .catch(error=>{

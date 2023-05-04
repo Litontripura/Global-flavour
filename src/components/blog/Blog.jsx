@@ -69,11 +69,7 @@ const Blog = () => {
           </div>
           <div className="p-4">
             <p className="text-gray-700 text-base">
-              Node.js is a JavaScript runtime built on the Chrome V8 engine that
-              allows developers to run JavaScript code outside of the browser.
-              Express.js is a web application framework that runs on top of
-              Node.js and provides a simple, flexible, and scalable way to build
-              web applications and APIs.
+           A custom hook is a JavaScript function that uses one or more of the built in React Hooks to encapsulate a piece of reusable logic in a modular and composable way. By defining a custom hook, you can abstract away complex logic and state management from your components and reuse that logic across multiple components.
             </p>
           </div>
         </div>
