@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
+import Rating from "react-rating";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,11 +24,25 @@ const RecipiesCard = ({ resi }) => {
 
   return (
     <div className="relative text-left md:grid grid-cols-2 gap-3 mt-5">
-      <img
+     <div>
+     <img
         className="md:w-[500px] h-[250px] rounded w-full  "
         src={photo_url}
         alt=""
       />
+
+      <div className="flex gap-2">
+        <h1 className="text-orange-600">Ratings</h1>
+      <Rating
+       placeholderRating={rating}
+       readonly
+       emptySymbol={<FaRegStar></FaRegStar>}
+       placeholderSymbol={<FaStar className="text-orange-600"></FaStar>}
+       fullSymbol={<FaStar></FaStar>}
+      ></Rating>
+      <span className="text-orange-600">{rating}</span>
+      </div>
+     </div>
       <div className=" bg-orange-500 p-5 rounded">
         <h2 className="font-bold text-white ">{name}</h2>
 
@@ -46,6 +62,7 @@ const RecipiesCard = ({ resi }) => {
             <span className="text-lg font-bold text-white">
               Cooking method
             </span>{" "}
+           
             {cooking_method.length < 50 ? (
               <p className="text-white">{cooking_method}</p>
             ) : (
