@@ -32,7 +32,7 @@ const Header = () => {
       </div>
        </div>
       <div className="col-span-1">
-        <ul className="md:flex items-center gap-5 font-bold">
+        <ul className="md:flex items-center gap-5 font-bold md:text-center text-left ml-5">
           <li>
             <ActiveLink to="/">Home</ActiveLink>
           </li>
@@ -44,7 +44,7 @@ const Header = () => {
           <li>
            
             {
-              user ? <span className="whitespace-nowrap" onClick={handleLogOut}><ActiveLink>Log out</ActiveLink></span>:<ActiveLink to="/login">Login</ActiveLink>
+              user ?  <img className="rounded-full w-[50px] h-[50px]" src={user.photoURL} alt="" title={user.displayName} />:<ActiveLink to="/login">Login</ActiveLink>
             }
           </li>
           <li>
@@ -52,11 +52,12 @@ const Header = () => {
               !user && <ActiveLink to="/register">register</ActiveLink> 
             }
           </li>
-          {
-  user && (
-    <img className="rounded-full w-[50px] h-[50px]" src={user.photoURL} alt="" title={user.displayName} />
-  )
-}
+          <li>
+            {
+              user && <button onClick={handleLogOut}>Log Out</button>
+            }
+          </li>
+     
         </ul>
       </div>
     </div>

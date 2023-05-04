@@ -18,10 +18,13 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import RecipiesPage from './components/Recipies/RecipiesPage';
 import SingleRecipies from './components/Recipies/SingleRecipies';
 
+import ErrorPage from './components/Error/ErrorPage';
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path:'/',
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path:'chefs', 
-        element:<RecipiesPage></RecipiesPage>,
+        element:<PrivateRoute><RecipiesPage></RecipiesPage></PrivateRoute>,
         children:[
           {
             path:':id', 
@@ -57,8 +60,8 @@ const router = createBrowserRouter([
           }
         ]
        
-      }
-   
+      },
+     
     
     ]
   },

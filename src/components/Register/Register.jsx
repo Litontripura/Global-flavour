@@ -17,30 +17,28 @@ const Register = () => {
 
 
   const handleRegister = (event) => {
-    event.preventDefault()
-    const form = event.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
-    setError('')
-    
-    console.log(name, photo, email, password, confirmPassword);
+    event.preventDefault();
+  
+    setError("");
+  
     if (password.length < 6) {
-      setError('The password is less than 6 characters')
+      setError("The password must be at least 6 characters");
       return;
     }
-    if (name && email && password && photo) {
-      createUser(email, password)
-        .then((result) => {
-          console.log(result.user);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+  
+    if (!email.trim() || !password.trim()) {
+      setError("Please enter a valid email and password");
+      return;
     }
-  }
+  
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
   const handleGoogle =()=>{
     googleSignIn()
     .then(result=>{
@@ -56,7 +54,7 @@ const Register = () => {
       console.log(result);
     })
     .then(error=>{
-      console.log(error);
+      setError(error.message);
     })
   }
   
@@ -64,6 +62,7 @@ const Register = () => {
         <div className="flex justify-center items-center my-8">
        {photo && <img src={photo} alt="User" className="w-24 h-24 rounded-full mb-4" />}
       <form onSubmit={handleRegister} className="register-bg p-8 rounded-lg shadow-lg w-2/5 register">
+        <p className='text-warning font-bold'>{error}</p>
         <h2 className="text-2xl font-medium mb-4">Enter Your Information</h2>
         <div>
           <label htmlFor="Name" className="block text-gray-700 font-medium mb-2">Name</label>
