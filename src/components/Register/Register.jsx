@@ -1,17 +1,20 @@
 import React, { useContext, useState } from 'react';
 import './Register.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FaBeer, FaGithub, FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { getAuth } from "firebase/auth";
 
 const Register = () => {
+  const navigate = useNavigate()
+    const location = useLocation()
   const [photo, setPhoto]=useState('')
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const from = location.state?.from?.pathname || '/'
 
   const {createUser,googleSignIn,gitHubSignIn}= useContext(AuthContext)
 
@@ -34,6 +37,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate(from, { replace: true })
       })
       .catch((error) => {
         setError(error.message);
@@ -45,16 +49,19 @@ const Register = () => {
       console.log(result);
     })
     .catch(error=>{
-      console.log(error);
+      setError(error.message);
     })
   }
   const handleGitHub=()=>{
     gitHubSignIn()
     .then(result=>{
       console.log(result);
+      navigate(from, { replace: true })
+      
     })
     .then(error=>{
-      setError(error.message);
+      setError(error);
+      navigate(from, { replace: true })
     })
   }
   

@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import RecipiesCard from "./RecipiesCard";
 
+
 const SingleRecipies = (props) => {
   const [allRecipi, setAllRecipi] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { name, id, picture_url,bio, all_recipes,years_of_experience, num_recipes,likes } = props.chefsRecipi;
   useEffect(() => {
-    fetch(`http://localhost:5000/resi/${id}`)
+    fetch(`https://assignment-10-server-litontripura.vercel.app/resi/${id}`)
       .then((res) => res.json())
-      .then((data) => setAllRecipi(data));
+      .then((data) => {
+        setAllRecipi(data);
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -25,11 +30,17 @@ const SingleRecipies = (props) => {
       </div>
       <div>
         <h1 className="text-4xl font-bold text-blue-600">{name} Recipies</h1>
-        <div className="md:grid grid-cols-2 gap-12 p-12 justify-center">
-          {allRecipi?.map((resi) => (
-            <RecipiesCard key={resi.id} resi={resi}></RecipiesCard>
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-screen">
+            <span className="text-orange-600 font-bold text-2xl">Loading...</span>
+          </div>
+        ) : (
+          <div className="md:grid grid-cols-2 gap-12 p-12 justify-center">
+            {allRecipi?.map((resi) => (
+              <RecipiesCard key={resi.id} resi={resi}></RecipiesCard>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

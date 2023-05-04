@@ -5,13 +5,16 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || '/chefs'
+    const location = useLocation()
+  
+  const [error, setError]=useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {logIn,  gitHubSignIn, googleSignIn}= useContext(AuthContext)
-  
+    const from = location.state?.from?.pathname || '/'
+   
     const handleSubmit = (event) => {
       event.preventDefault();
       const form = event.target;
@@ -22,10 +25,11 @@ const Login = () => {
       .then(result=>{
         console.log(result);
         navigate(from, { replace: true })
+        setError('')
         form.reset()
       })
       .catch(error=>{
-        console.log(error);
+        setError(error);
       })
       
     }
@@ -46,12 +50,13 @@ const Login = () => {
         navigate(from, { replace: true })
       })
       .then(error=>{
-        console.log(error);
+        setError(error);
       })
     }
     return (
       <div className="flex justify-center items-center h-screen">
       <form onSubmit={handleSubmit} className="login-bg bg-slate-200 p-8 rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/3" >
+        <p>{error.message}</p>
         <h2 className="text-2xl font-bold text-blue-600 mb-4 ">Plese Log In</h2>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>

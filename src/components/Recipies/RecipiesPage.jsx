@@ -11,7 +11,7 @@ const RecipiesPage = () => {
      
 
     useEffect(()=>{
-      fetch(`http://localhost:5000/chefs/${id}`)
+      fetch(`https://assignment-10-server-litontripura.vercel.app/chefs/${id}`)
       .then(res=>res.json())
       .then(data=>setChefsRecipi(data))
     },[])
