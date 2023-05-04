@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RecipiesCard = ({ resi }) => {
   const {
@@ -15,6 +17,7 @@ const RecipiesCard = ({ resi }) => {
 
   const handleFavoriteClick = () => {
     setIsFavorited(true);
+    toast.success(`You added favorite ${name}`);
   };
 
   return (
@@ -30,10 +33,13 @@ const RecipiesCard = ({ resi }) => {
         <div className="">
           <h1 className="text-xl font-bold text-white">ingredients</h1>
           {ingredients.map((ingre, index) => (
-            <p className="text-sm font-bold uppercase">
+            <p className="text-sm font-bold uppercase" key={index}>
               {index + 1}..{ingre}
             </p>
           ))}
+        </div>
+        <div>
+          <ToastContainer></ToastContainer>
         </div>
         <div className="">
           <div className="">
@@ -49,14 +55,16 @@ const RecipiesCard = ({ resi }) => {
         </div>
       </div>
       <button
-  className={`absolute right-0 bottom-0 py-2 px-3 font-bold rounded-lg ${
-    isFavorited ? 'bg-green-500 hover:bg-green-700' : 'bg-slate-400 hover:bg-orange-700'
-  } text-white`}
-  onClick={handleFavoriteClick}
-  disabled={isFavorited}
->
-  {isFavorited ? "Favorited" : "Favorite"}
-</button>
+        className={`absolute right-0 bottom-0 py-2 px-3 font-bold rounded-lg ${
+          isFavorited
+            ? "bg-green-500 hover:bg-green-700"
+            : "bg-slate-400 hover:bg-orange-700"
+        } text-white`}
+        onClick={handleFavoriteClick}
+        disabled={isFavorited}
+      >
+        {isFavorited ? "Favorited" : "Favorite"}
+      </button>
     </div>
   );
 };
