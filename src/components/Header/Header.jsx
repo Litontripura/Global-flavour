@@ -7,6 +7,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Header = () => {
   const {user, LogOut}= useContext(AuthContext)
+  
   const handleLogOut =()=>{
       LogOut()
       .then(()=>{
@@ -43,12 +44,19 @@ const Header = () => {
           <li>
            
             {
-              user ? <span onClick={handleLogOut}><ActiveLink>Log out</ActiveLink></span>:<ActiveLink to="/login">Login</ActiveLink>
+              user ? <span className="whitespace-nowrap" onClick={handleLogOut}><ActiveLink>Log out</ActiveLink></span>:<ActiveLink to="/login">Login</ActiveLink>
             }
           </li>
           <li>
-            <ActiveLink to="/register">register</ActiveLink>
+            {
+              !user && <ActiveLink to="/register">register</ActiveLink> 
+            }
           </li>
+          {
+  user && (
+    <img className="rounded-full w-[50px] h-[50px]" src={user.photoURL} alt="" title={user.displayName} />
+  )
+}
         </ul>
       </div>
     </div>

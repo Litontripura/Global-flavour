@@ -3,6 +3,8 @@ import './Register.css'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FaBeer, FaGithub, FaGoogle } from 'react-icons/fa';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { getAuth } from "firebase/auth";
 
 const Register = () => {
   const [photo, setPhoto]=useState('')
@@ -11,7 +13,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const {createUser}= useContext(AuthContext)
+  const {createUser,googleSignIn,gitHubSignIn}= useContext(AuthContext)
+
 
   const handleRegister = (event) => {
     event.preventDefault()
@@ -38,11 +41,30 @@ const Register = () => {
         });
     }
   }
+  const handleGoogle =()=>{
+    googleSignIn()
+    .then(result=>{
+      console.log(result);
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+  const handleGitHub=()=>{
+    gitHubSignIn()
+    .then(result=>{
+      console.log(result);
+    })
+    .then(error=>{
+      console.log(error);
+    })
+  }
+  
     return (
         <div className="flex justify-center items-center my-8">
        {photo && <img src={photo} alt="User" className="w-24 h-24 rounded-full mb-4" />}
       <form onSubmit={handleRegister} className="register-bg p-8 rounded-lg shadow-lg w-2/5 register">
-        <h2 className="text-2xl font-medium mb-4">Register</h2>
+        <h2 className="text-2xl font-medium mb-4">Enter Your Information</h2>
         <div>
           <label htmlFor="Name" className="block text-gray-700 font-medium mb-2">Name</label>
           <input type="text" name='name' onChange={(e) => setName(e.target.value)} id="Name" className="border border-gray-400 p-2 w-full" required />
@@ -59,26 +81,25 @@ const Register = () => {
           <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Password</label>
           <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} name='password' className="border border-gray-400 p-2 w-full" required />
         </div>
-          <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-gray-700 font-medium mb-2">Confirm Password</label>
-            <input type="password" id="confirmPassword" name='confirmPassword' className="border border-gray-400 p-2 w-full"   required />
-          </div>
+     
           <div className="">
           <p>Already have an account? <Link to='/login'>Please Login</Link> </p>
-            <button type="submit" className="bg-green-500 hover:bg-green-200 text-white hover:text-black font-medium py-2 px-4 rounded">
+            <button type="submit" className="w-1/2 mt-5 bg-green-500 hover:bg-green-200 text-white hover:text-black font-medium py-2 px-4 rounded">
             Please Register
             </button>
-            
-           <div className='mx-auto'>
-           <button className='flex justify-center items-center bg-green-500 hover:bg-green-200 text-white hover:text-black font-medium py-2 px-4 rounded my-2'>
+            <div className='border-b'></div>
+            <div className='mx-auto'>
+           <button onClick={handleGoogle} className='w-1/2 flex justify-center items-center bg-green-500 hover:bg-green-200 text-white hover:text-black font-medium py-2 px-4 rounded my-2 mx-auto'>
               <FaGoogle></FaGoogle> <p className='ms-2'>Sign with google</p>
              </button>
            </div>
            <div>
-           <button className='flex  items-center bg-green-500 hover:bg-green-200 text-white hover:text-black font-medium py-2 px-4 rounded'><FaGithub></FaGithub><p className='ms-2'> Sign Up with Github</p></button>
+           <button onClick={handleGitHub} className='w-1/2 flex  items-center mx-auto bg-green-500 hover:bg-green-200 text-white hover:text-black font-medium py-2 px-4 rounded'><FaGithub></FaGithub><p className='ms-2'> Sign In with Github</p></button>
            </div>
           </div>
         </form>
+             
+    
       </div>
       
     );

@@ -1,0 +1,18 @@
+.third-banner {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .third-banner:hover {
+    opacity: 0.8;
+  }
+  
+  .third-banner h2,
+  .third-banner p {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .third-banner:hover h2,
+  .third-banner:hover p {
+    color: white;
+  }
+  
